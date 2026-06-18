@@ -51,6 +51,9 @@
             overflow: hidden;
             border-radius: 28px;
             box-shadow: 0 0 0 10px #161616, 0 30px 80px rgba(0,0,0,0.8);
+            /* Size container: typography uses cqw so it scales identically in the
+               440px desktop frame and the 1080px JPEG export. */
+            container-type: inline-size;
         }
 
         @media (max-width: 480px) {
@@ -125,18 +128,18 @@
             position: absolute;
             top: 0; left: 0; right: 0;
             z-index: 30;
-            padding: 14px 12px 0;
+            padding: 3cqw 3cqw 0;
             pointer-events: none;
         }
 
         .progress {
             display: flex;
-            gap: 4px;
+            gap: 1cqw;
         }
         .progress__seg {
             flex: 1;
-            height: 3px;
-            border-radius: 3px;
+            height: 0.7cqw;
+            border-radius: 1cqw;
             background: rgba(255,255,255,0.28);
             overflow: hidden;
         }
@@ -144,12 +147,12 @@
 
         .tabs {
             display: flex;
-            gap: 18px;
+            gap: 4.5cqw;
             justify-content: center;
             align-items: center;
-            margin-top: 14px;
+            margin-top: 3cqw;
             font-weight: 600;
-            font-size: 0.95rem;
+            font-size: 3.4cqw;
         }
         .tabs span { color: rgba(255,255,255,0.55); }
         .tabs .on {
@@ -160,8 +163,8 @@
             content: '';
             position: absolute;
             left: 50%; transform: translateX(-50%);
-            bottom: -7px;
-            width: 22px; height: 2px;
+            bottom: -1.6cqw;
+            width: 5cqw; height: 0.5cqw;
             background: #fff;
             border-radius: 2px;
         }
@@ -169,130 +172,130 @@
         /* --- RIGHT ACTION RAIL --- */
         .rail {
             position: absolute;
-            right: 8px;
-            bottom: 120px;
+            right: 2cqw;
+            bottom: 26cqw;
             z-index: 25;
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 20px;
+            gap: 4.5cqw;
         }
         .rail__btn {
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 4px;
+            gap: 1cqw;
             color: #fff;
         }
-        .rail__btn svg { width: 34px; height: 34px; filter: drop-shadow(0 1px 3px rgba(0,0,0,0.5)); }
-        .rail__btn span { font-size: 0.72rem; font-weight: 600; }
+        .rail__btn svg { width: 7.6cqw; height: 7.6cqw; filter: drop-shadow(0 1px 3px rgba(0,0,0,0.5)); }
+        .rail__btn span { font-size: 2.5cqw; font-weight: 600; }
 
         .rail__avatar {
             position: relative;
-            width: 46px; height: 46px;
+            width: 10.5cqw; height: 10.5cqw;
             border-radius: 50%;
-            border: 2px solid #fff;
+            border: 0.5cqw solid #fff;
             background: linear-gradient(135deg, var(--razor-red), #7a0d0d);
             display: flex; align-items: center; justify-content: center;
             font-family: var(--font-mono);
-            font-weight: 600; font-size: 0.95rem;
-            margin-bottom: 6px;
+            font-weight: 600; font-size: 3cqw;
+            margin-bottom: 1.4cqw;
         }
         .rail__plus {
             position: absolute;
-            bottom: -9px; left: 50%; transform: translateX(-50%);
-            width: 18px; height: 18px; border-radius: 50%;
+            bottom: -2cqw; left: 50%; transform: translateX(-50%);
+            width: 4cqw; height: 4cqw; border-radius: 50%;
             background: var(--razor-red);
-            border: 2px solid #000;
-            color: #fff; font-size: 12px; line-height: 14px; font-weight: 700;
+            border: 0.5cqw solid #000;
+            color: #fff; font-size: 2.6cqw; line-height: 1; font-weight: 700;
             display: flex; align-items: center; justify-content: center;
         }
 
         .rail__btn.heart svg { fill: var(--razor-red); }
 
         .rail__disc {
-            width: 44px; height: 44px;
+            width: 10cqw; height: 10cqw;
             border-radius: 50%;
             background: radial-gradient(circle, #333 30%, #111 31%, #000 70%);
-            border: 3px solid #1c1c1c;
+            border: 0.7cqw solid #1c1c1c;
             display: flex; align-items: center; justify-content: center;
             animation: spin 4s linear infinite;
         }
-        .rail__disc::after { content: '♪'; color: #fff; font-size: 16px; }
+        .rail__disc::after { content: '♪'; color: #fff; font-size: 3.6cqw; }
 
         /* --- BOTTOM CAPTION --- */
         .caption {
             position: relative;
             z-index: 20;
-            padding: 0 78px 26px 16px;
+            padding: 0 18cqw 6cqw 4cqw;
             text-shadow: 0 1px 6px rgba(0,0,0,0.55);
         }
 
         .badge {
             display: inline-block;
             font-family: var(--font-mono);
-            font-size: 0.72rem;
+            font-size: 2.6cqw;
             font-weight: 600;
             letter-spacing: 0.06em;
             text-transform: uppercase;
-            padding: 0.25rem 0.6rem;
-            margin-bottom: 0.7rem;
+            padding: 0.9cqw 1.8cqw;
+            margin-bottom: 2cqw;
             background: #fff; color: #000;
-            border-radius: 3px;
+            border-radius: 0.8cqw;
         }
         .badge.red  { background: var(--razor-red); color: #fff; }
         .badge.gold { background: var(--alert-gold); color: #000; }
 
         .handle {
             font-weight: 700;
-            font-size: 1.05rem;
-            margin-bottom: 0.5rem;
-            display: flex; align-items: center; gap: 6px;
+            font-size: 3.9cqw;
+            margin-bottom: 1.4cqw;
+            display: flex; align-items: center; gap: 1.4cqw;
         }
         .handle .verified { color: var(--alert-gold); }
 
         .title {
-            font-size: 1.9rem;
+            font-size: 6.4cqw;
             font-weight: 700;
-            line-height: 1.08;
+            line-height: 1.05;
             letter-spacing: -0.02em;
-            margin-bottom: 0.55rem;
+            margin-bottom: 1.6cqw;
         }
         .slide.core .title { color: #ff5a5a; }
 
         .sub {
             font-family: var(--font-mono);
-            font-size: 0.74rem;
+            font-size: 2.6cqw;
             text-transform: uppercase;
             letter-spacing: 0.08em;
             color: var(--alert-gold);
-            margin-bottom: 0.7rem;
+            margin-bottom: 1.8cqw;
         }
 
         .desc {
-            font-size: 0.96rem;
+            font-size: 3.7cqw;
             font-weight: 300;
-            line-height: 1.5;
+            line-height: 1.45;
             color: var(--text-main);
-            margin-bottom: 0.6rem;
+            margin-bottom: 1.8cqw;
         }
         .desc strong { font-weight: 700; }
 
         .tags {
-            font-size: 0.9rem;
+            font-size: 3.4cqw;
             font-weight: 600;
             color: #fff;
-            margin-bottom: 0.7rem;
+            margin-bottom: 1.8cqw;
         }
 
         .music {
-            display: flex; align-items: center; gap: 8px;
-            font-size: 0.82rem; font-weight: 500;
+            display: flex; align-items: center; gap: 1.8cqw;
+            font-size: 2.8cqw; font-weight: 500;
             color: var(--text-main);
         }
-        .music svg { width: 15px; height: 15px; }
+        .music svg { width: 3.4cqw; height: 3.4cqw; }
         .music .ticker {
-            overflow: hidden; white-space: nowrap; max-width: 220px;
+            overflow: hidden; white-space: nowrap; max-width: 55cqw;
         }
         .music .ticker span {
             display: inline-block;
@@ -303,18 +306,18 @@
         /* --- SWIPE-UP HINT (first slide) --- */
         .swipe-hint {
             position: absolute;
-            left: 50%; bottom: 14px;
+            left: 50%; bottom: 3cqw;
             transform: translateX(-50%);
             z-index: 22;
-            display: flex; flex-direction: column; align-items: center; gap: 2px;
+            display: flex; flex-direction: column; align-items: center; gap: 0.5cqw;
             color: rgba(255,255,255,0.85);
             font-family: var(--font-mono);
-            font-size: 0.66rem;
+            font-size: 2.4cqw;
             letter-spacing: 0.12em;
             text-transform: uppercase;
             animation: bob 1.6s ease-in-out infinite;
         }
-        .swipe-hint svg { width: 22px; height: 22px; }
+        .swipe-hint svg { width: 5cqw; height: 5cqw; }
 
         @keyframes spin { to { transform: rotate(360deg); } }
         @keyframes marquee { to { transform: translateX(-100%); } }
@@ -361,7 +364,7 @@
                     <div class="handle">@velvet.razor <span class="verified">✦</span></div>
                     <div class="title">Feelings &amp; Singing</div>
                     <div class="sub">Neurophysiology of Singing</div>
-                    <div class="desc"><strong>Five levels, one descent.</strong> How breath pressure becomes affect — from recognition in the cortex to the structural breach in the core. Not "singing from the gut", but muscle, nerve &amp; frequency coupled to emotion.</div>
+                    <div class="desc"><strong>Five levels, one descent.</strong> How breath pressure becomes raw emotion — muscle, nerve &amp; frequency. Not "singing from the gut".</div>
                     <div class="tags">#neuroscience #singing #voicelab #fyp</div>
                     <div class="music">
                         <svg viewBox="0 0 24 24" fill="#fff"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3" fill="#fff"/><circle cx="18" cy="16" r="3" fill="#fff"/></svg>
@@ -392,7 +395,7 @@
                     <div class="handle">@velvet.razor <span class="verified">✦</span></div>
                     <div class="title">The Recall</div>
                     <div class="sub">Music-Evoked Autobiographical Memory</div>
-                    <div class="desc">Biographical songs trigger involuntary memories. The <strong>medial prefrontal cortex (mPFC)</strong> binds sound to self. A song after long absence = maximal prediction error → reward system fires, emotion grips before analysis.</div>
+                    <div class="desc">Old songs trigger involuntary memories. The <strong>mPFC</strong> binds sound to self — the feeling hits before you can think.</div>
                     <div class="tags">#mpfc #memory #brain #neuroscience</div>
                     <div class="music">
                         <svg viewBox="0 0 24 24" fill="#fff"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3" fill="#fff"/><circle cx="18" cy="16" r="3" fill="#fff"/></svg>
@@ -419,7 +422,7 @@
                     <div class="handle">@velvet.razor <span class="verified">✦</span></div>
                     <div class="title">The Body as Instrument</div>
                     <div class="sub">Self-Resonance · Bone Conduction</div>
-                    <div class="desc">When singing, you are the sound source. Bone &amp; air conduction fire at once. The singer's formant concentrates energy at <strong>2.8–3.4 kHz</strong> — felt physically in the sternum. A somatosensory layer mere listening can't reach.</div>
+                    <div class="desc">When you sing, you <strong>are</strong> the sound. The singer's formant peaks at <strong>2.8–3.4 kHz</strong> — felt in your sternum. A layer listening can't reach.</div>
                     <div class="tags">#resonance #boneconduction #interoception</div>
                     <div class="music">
                         <svg viewBox="0 0 24 24" fill="#fff"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3" fill="#fff"/><circle cx="18" cy="16" r="3" fill="#fff"/></svg>
@@ -446,7 +449,7 @@
                     <div class="handle">@velvet.razor <span class="verified">✦</span></div>
                     <div class="title">The Nerve of Rest</div>
                     <div class="sub">Vagus Nerve · Parasympathetic Tone</div>
-                    <div class="desc">Laryngeal branches of the <strong>Vagus Nerve</strong> are stimulated with every phonation. The long exhale of a phrase amplifies it: HRV rises, cortisol drops. The ventral vagal complex reads "safe" — defenses lower, vulnerability allowed.</div>
+                    <div class="desc">Every sung phrase stimulates the <strong>vagus nerve</strong>. HRV up, cortisol down. The body reads "safe" — and drops its guard.</div>
                     <div class="tags">#vagusnerve #hrv #regulation #calm</div>
                     <div class="music">
                         <svg viewBox="0 0 24 24" fill="#fff"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3" fill="#fff"/><circle cx="18" cy="16" r="3" fill="#fff"/></svg>
@@ -473,7 +476,7 @@
                     <div class="handle">@velvet.razor <span class="verified">✦</span></div>
                     <div class="title">Relinquishing Control</div>
                     <div class="sub">Transient Hypofrontality</div>
-                    <div class="desc">Intuitive "let-go" singing down-regulates the prefrontal cortex → <strong>transient hypofrontality</strong>. Executive self-monitoring steps down, the somatic autopilot takes over. The analytical inner censor goes fully offline.</div>
+                    <div class="desc">Letting go down-regulates the prefrontal cortex → <strong>transient hypofrontality</strong>. The inner censor goes offline; the body takes over.</div>
                     <div class="tags">#flowstate #hypofrontality #letgo</div>
                     <div class="music">
                         <svg viewBox="0 0 24 24" fill="#fff"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3" fill="#fff"/><circle cx="18" cy="16" r="3" fill="#fff"/></svg>
@@ -500,7 +503,7 @@
                     <div class="handle">@velvet.razor <span class="verified">✦</span></div>
                     <div class="title">The Wall Breach</div>
                     <div class="sub">Convergence · Catharsis · Discharge</div>
-                    <div class="desc">When all parameters align — safety (Vagus), self-oscillation (Resonance), censor off (Hypofrontality), memory unlocked (mPFC) — the defensive walls break. Singing bypasses the verbal filter. The barrier tears: tears, breakthrough, discharge.</div>
+                    <div class="desc">Safety + resonance + censor off + memory unlocked = <strong>the walls break</strong>. Singing bypasses the verbal filter. The barrier tears: tears, release.</div>
                     <div class="tags">#catharsis #emotion #breakthrough</div>
                     <div class="music">
                         <svg viewBox="0 0 24 24" fill="#fff"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3" fill="#fff"/><circle cx="18" cy="16" r="3" fill="#fff"/></svg>
@@ -527,7 +530,7 @@
                     <div class="handle">@velvet.razor <span class="verified">✦</span></div>
                     <div class="title">The Queue &amp; The Seam</div>
                     <div class="sub">Speech-Motorics · Latency · ADHD</div>
-                    <div class="desc">Singing dictates rhythm externally — syllables <em>n+1, n+2</em> queue in a phonological buffer. Between "thinking" &amp; "forming" a word: a <strong>50–150 ms latency</strong>, normally erased by a forward model. <strong>In ADHD</strong> reduced sensory gating lets the buffer break into consciousness — the seam becomes audible.</div>
+                    <div class="desc">Syllables queue in a buffer. A <strong>50–150 ms</strong> gap sits between thinking and forming a word — normally erased. <strong>In ADHD</strong> the seam becomes audible.</div>
                     <div class="tags">#adhd #speech #latency #neurodivergent</div>
                     <div class="music">
                         <svg viewBox="0 0 24 24" fill="#fff"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3" fill="#fff"/><circle cx="18" cy="16" r="3" fill="#fff"/></svg>
