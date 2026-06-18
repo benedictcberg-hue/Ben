@@ -118,7 +118,7 @@
             inset: 0;
             z-index: 1;
             background:
-                linear-gradient(180deg, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0) 22%, rgba(0,0,0,0) 45%, rgba(0,0,0,0.85) 100%),
+                linear-gradient(180deg, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.18) 30%, rgba(0,0,0,0.18) 52%, rgba(0,0,0,0.9) 100%),
                 radial-gradient(120% 60% at 80% 30%, rgba(0,0,0,0) 40%, rgba(0,0,0,0.35) 100%);
             pointer-events: none;
         }
@@ -223,13 +223,18 @@
         }
         .rail__disc::after { content: '♪'; color: #fff; font-size: 3.6cqw; }
 
-        /* --- BOTTOM CAPTION --- */
-        .caption {
+        /* --- TEXT OVERLAY: distributes content over the full slide height --- */
+        .overlay {
             position: relative;
             z-index: 20;
-            padding: 0 18cqw 6cqw 4cqw;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 18cqw 18cqw 6cqw 4cqw;
             text-shadow: 0 1px 6px rgba(0,0,0,0.55);
         }
+        .hero, .meta { display: flex; flex-direction: column; }
 
         .badge {
             display: inline-block;
@@ -359,16 +364,20 @@
                     <div class="rail__btn"><svg viewBox="0 0 24 24" fill="#fff"><path d="M2 21l21-9L2 3v7l15 2-15 2z"/></svg><span>Share</span></div>
                     <div class="rail__disc"></div>
                 </div>
-                <div class="caption">
-                    <span class="badge">Lab Note N°01</span>
-                    <div class="handle">@velvet.razor <span class="verified">✦</span></div>
-                    <div class="title">Feelings &amp; Singing</div>
-                    <div class="sub">Neurophysiology of Singing</div>
-                    <div class="desc"><strong>Five levels, one descent.</strong> How breath pressure becomes raw emotion — muscle, nerve &amp; frequency. Not "singing from the gut".</div>
-                    <div class="tags">#neuroscience #singing #voicelab #fyp</div>
-                    <div class="music">
-                        <svg viewBox="0 0 24 24" fill="#fff"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3" fill="#fff"/><circle cx="18" cy="16" r="3" fill="#fff"/></svg>
-                        <div class="ticker"><span>original sound — The Velvet Razor · Forensic Voice Lab</span></div>
+                <div class="overlay">
+                    <div class="hero">
+                        <span class="badge">Lab Note N°01</span>
+                        <div class="title">Feelings &amp; Singing</div>
+                        <div class="sub">Neurophysiology of Singing</div>
+                    </div>
+                    <div class="meta">
+                        <div class="handle">@velvet.razor <span class="verified">✦</span></div>
+                        <div class="desc"><strong>Five levels, one descent.</strong> How breath pressure becomes raw emotion — muscle, nerve &amp; frequency. Not "singing from the gut".</div>
+                        <div class="tags">#neuroscience #singing #voicelab #fyp</div>
+                        <div class="music">
+                            <svg viewBox="0 0 24 24" fill="#fff"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3" fill="#fff"/><circle cx="18" cy="16" r="3" fill="#fff"/></svg>
+                            <div class="ticker"><span>original sound — The Velvet Razor · Forensic Voice Lab</span></div>
+                        </div>
                     </div>
                 </div>
                 <div class="swipe-hint">
@@ -390,16 +399,20 @@
                     <div class="rail__btn"><svg viewBox="0 0 24 24" fill="#fff"><path d="M2 21l21-9L2 3v7l15 2-15 2z"/></svg><span>Share</span></div>
                     <div class="rail__disc"></div>
                 </div>
-                <div class="caption">
-                    <span class="badge">Level 01 // Cortex</span>
-                    <div class="handle">@velvet.razor <span class="verified">✦</span></div>
-                    <div class="title">The Recall</div>
-                    <div class="sub">Music-Evoked Autobiographical Memory</div>
-                    <div class="desc">Old songs trigger involuntary memories. The <strong>mPFC</strong> binds sound to self — the feeling hits before you can think.</div>
-                    <div class="tags">#mpfc #memory #brain #neuroscience</div>
-                    <div class="music">
-                        <svg viewBox="0 0 24 24" fill="#fff"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3" fill="#fff"/><circle cx="18" cy="16" r="3" fill="#fff"/></svg>
-                        <div class="ticker"><span>original sound — The Velvet Razor · Forensic Voice Lab</span></div>
+                <div class="overlay">
+                    <div class="hero">
+                        <span class="badge">Level 01 // Cortex</span>
+                        <div class="title">The Recall</div>
+                        <div class="sub">Music-Evoked Autobiographical Memory</div>
+                    </div>
+                    <div class="meta">
+                        <div class="handle">@velvet.razor <span class="verified">✦</span></div>
+                        <div class="desc">Old songs trigger involuntary memories. The <strong>mPFC</strong> binds sound to self — the feeling hits before you can think.</div>
+                        <div class="tags">#mpfc #memory #brain #neuroscience</div>
+                        <div class="music">
+                            <svg viewBox="0 0 24 24" fill="#fff"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3" fill="#fff"/><circle cx="18" cy="16" r="3" fill="#fff"/></svg>
+                            <div class="ticker"><span>original sound — The Velvet Razor · Forensic Voice Lab</span></div>
+                        </div>
                     </div>
                 </div>
             </section>
@@ -417,16 +430,20 @@
                     <div class="rail__btn"><svg viewBox="0 0 24 24" fill="#fff"><path d="M2 21l21-9L2 3v7l15 2-15 2z"/></svg><span>Share</span></div>
                     <div class="rail__disc"></div>
                 </div>
-                <div class="caption">
-                    <span class="badge">Level 02 // Tissue</span>
-                    <div class="handle">@velvet.razor <span class="verified">✦</span></div>
-                    <div class="title">The Body as Instrument</div>
-                    <div class="sub">Self-Resonance · Bone Conduction</div>
-                    <div class="desc">When you sing, you <strong>are</strong> the sound. The singer's formant peaks at <strong>2.8–3.4 kHz</strong> — felt in your sternum. A layer listening can't reach.</div>
-                    <div class="tags">#resonance #boneconduction #interoception</div>
-                    <div class="music">
-                        <svg viewBox="0 0 24 24" fill="#fff"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3" fill="#fff"/><circle cx="18" cy="16" r="3" fill="#fff"/></svg>
-                        <div class="ticker"><span>original sound — The Velvet Razor · Forensic Voice Lab</span></div>
+                <div class="overlay">
+                    <div class="hero">
+                        <span class="badge">Level 02 // Tissue</span>
+                        <div class="title">The Body as Instrument</div>
+                        <div class="sub">Self-Resonance · Bone Conduction</div>
+                    </div>
+                    <div class="meta">
+                        <div class="handle">@velvet.razor <span class="verified">✦</span></div>
+                        <div class="desc">When you sing, you <strong>are</strong> the sound. The singer's formant peaks at <strong>2.8–3.4 kHz</strong> — felt in your sternum. A layer listening can't reach.</div>
+                        <div class="tags">#resonance #boneconduction #interoception</div>
+                        <div class="music">
+                            <svg viewBox="0 0 24 24" fill="#fff"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3" fill="#fff"/><circle cx="18" cy="16" r="3" fill="#fff"/></svg>
+                            <div class="ticker"><span>original sound — The Velvet Razor · Forensic Voice Lab</span></div>
+                        </div>
                     </div>
                 </div>
             </section>
@@ -444,16 +461,20 @@
                     <div class="rail__btn"><svg viewBox="0 0 24 24" fill="#fff"><path d="M2 21l21-9L2 3v7l15 2-15 2z"/></svg><span>Share</span></div>
                     <div class="rail__disc"></div>
                 </div>
-                <div class="caption">
-                    <span class="badge">Level 03 // Autonomic</span>
-                    <div class="handle">@velvet.razor <span class="verified">✦</span></div>
-                    <div class="title">The Nerve of Rest</div>
-                    <div class="sub">Vagus Nerve · Parasympathetic Tone</div>
-                    <div class="desc">Every sung phrase stimulates the <strong>vagus nerve</strong>. HRV up, cortisol down. The body reads "safe" — and drops its guard.</div>
-                    <div class="tags">#vagusnerve #hrv #regulation #calm</div>
-                    <div class="music">
-                        <svg viewBox="0 0 24 24" fill="#fff"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3" fill="#fff"/><circle cx="18" cy="16" r="3" fill="#fff"/></svg>
-                        <div class="ticker"><span>original sound — The Velvet Razor · Forensic Voice Lab</span></div>
+                <div class="overlay">
+                    <div class="hero">
+                        <span class="badge">Level 03 // Autonomic</span>
+                        <div class="title">The Nerve of Rest</div>
+                        <div class="sub">Vagus Nerve · Parasympathetic Tone</div>
+                    </div>
+                    <div class="meta">
+                        <div class="handle">@velvet.razor <span class="verified">✦</span></div>
+                        <div class="desc">Every sung phrase stimulates the <strong>vagus nerve</strong>. HRV up, cortisol down. The body reads "safe" — and drops its guard.</div>
+                        <div class="tags">#vagusnerve #hrv #regulation #calm</div>
+                        <div class="music">
+                            <svg viewBox="0 0 24 24" fill="#fff"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3" fill="#fff"/><circle cx="18" cy="16" r="3" fill="#fff"/></svg>
+                            <div class="ticker"><span>original sound — The Velvet Razor · Forensic Voice Lab</span></div>
+                        </div>
                     </div>
                 </div>
             </section>
@@ -471,16 +492,20 @@
                     <div class="rail__btn"><svg viewBox="0 0 24 24" fill="#fff"><path d="M2 21l21-9L2 3v7l15 2-15 2z"/></svg><span>Share</span></div>
                     <div class="rail__disc"></div>
                 </div>
-                <div class="caption">
-                    <span class="badge">Level 04 // Control</span>
-                    <div class="handle">@velvet.razor <span class="verified">✦</span></div>
-                    <div class="title">Relinquishing Control</div>
-                    <div class="sub">Transient Hypofrontality</div>
-                    <div class="desc">Letting go down-regulates the prefrontal cortex → <strong>transient hypofrontality</strong>. The inner censor goes offline; the body takes over.</div>
-                    <div class="tags">#flowstate #hypofrontality #letgo</div>
-                    <div class="music">
-                        <svg viewBox="0 0 24 24" fill="#fff"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3" fill="#fff"/><circle cx="18" cy="16" r="3" fill="#fff"/></svg>
-                        <div class="ticker"><span>original sound — The Velvet Razor · Forensic Voice Lab</span></div>
+                <div class="overlay">
+                    <div class="hero">
+                        <span class="badge">Level 04 // Control</span>
+                        <div class="title">Relinquishing Control</div>
+                        <div class="sub">Transient Hypofrontality</div>
+                    </div>
+                    <div class="meta">
+                        <div class="handle">@velvet.razor <span class="verified">✦</span></div>
+                        <div class="desc">Letting go down-regulates the prefrontal cortex → <strong>transient hypofrontality</strong>. The inner censor goes offline; the body takes over.</div>
+                        <div class="tags">#flowstate #hypofrontality #letgo</div>
+                        <div class="music">
+                            <svg viewBox="0 0 24 24" fill="#fff"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3" fill="#fff"/><circle cx="18" cy="16" r="3" fill="#fff"/></svg>
+                            <div class="ticker"><span>original sound — The Velvet Razor · Forensic Voice Lab</span></div>
+                        </div>
                     </div>
                 </div>
             </section>
@@ -498,16 +523,20 @@
                     <div class="rail__btn"><svg viewBox="0 0 24 24" fill="#fff"><path d="M2 21l21-9L2 3v7l15 2-15 2z"/></svg><span>Share</span></div>
                     <div class="rail__disc"></div>
                 </div>
-                <div class="caption">
-                    <span class="badge red">Level 05 // Core</span>
-                    <div class="handle">@velvet.razor <span class="verified">✦</span></div>
-                    <div class="title">The Wall Breach</div>
-                    <div class="sub">Convergence · Catharsis · Discharge</div>
-                    <div class="desc">Safety + resonance + censor off + memory unlocked = <strong>the walls break</strong>. Singing bypasses the verbal filter. The barrier tears: tears, release.</div>
-                    <div class="tags">#catharsis #emotion #breakthrough</div>
-                    <div class="music">
-                        <svg viewBox="0 0 24 24" fill="#fff"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3" fill="#fff"/><circle cx="18" cy="16" r="3" fill="#fff"/></svg>
-                        <div class="ticker"><span>original sound — The Velvet Razor · Forensic Voice Lab</span></div>
+                <div class="overlay">
+                    <div class="hero">
+                        <span class="badge red">Level 05 // Core</span>
+                        <div class="title">The Wall Breach</div>
+                        <div class="sub">Convergence · Catharsis · Discharge</div>
+                    </div>
+                    <div class="meta">
+                        <div class="handle">@velvet.razor <span class="verified">✦</span></div>
+                        <div class="desc">Safety + resonance + censor off + memory unlocked = <strong>the walls break</strong>. Singing bypasses the verbal filter. The barrier tears: tears, release.</div>
+                        <div class="tags">#catharsis #emotion #breakthrough</div>
+                        <div class="music">
+                            <svg viewBox="0 0 24 24" fill="#fff"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3" fill="#fff"/><circle cx="18" cy="16" r="3" fill="#fff"/></svg>
+                            <div class="ticker"><span>original sound — The Velvet Razor · Forensic Voice Lab</span></div>
+                        </div>
                     </div>
                 </div>
             </section>
@@ -525,16 +554,20 @@
                     <div class="rail__btn"><svg viewBox="0 0 24 24" fill="#fff"><path d="M2 21l21-9L2 3v7l15 2-15 2z"/></svg><span>Share</span></div>
                     <div class="rail__disc"></div>
                 </div>
-                <div class="caption">
-                    <span class="badge gold">Lab Note N°02</span>
-                    <div class="handle">@velvet.razor <span class="verified">✦</span></div>
-                    <div class="title">The Queue &amp; The Seam</div>
-                    <div class="sub">Speech-Motorics · Latency · ADHD</div>
-                    <div class="desc">Syllables queue in a buffer. A <strong>50–150 ms</strong> gap sits between thinking and forming a word — normally erased. <strong>In ADHD</strong> the seam becomes audible.</div>
-                    <div class="tags">#adhd #speech #latency #neurodivergent</div>
-                    <div class="music">
-                        <svg viewBox="0 0 24 24" fill="#fff"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3" fill="#fff"/><circle cx="18" cy="16" r="3" fill="#fff"/></svg>
-                        <div class="ticker"><span>original sound — The Velvet Razor · Forensic Voice Lab</span></div>
+                <div class="overlay">
+                    <div class="hero">
+                        <span class="badge gold">Lab Note N°02</span>
+                        <div class="title">The Queue &amp; The Seam</div>
+                        <div class="sub">Speech-Motorics · Latency · ADHD</div>
+                    </div>
+                    <div class="meta">
+                        <div class="handle">@velvet.razor <span class="verified">✦</span></div>
+                        <div class="desc">Syllables queue in a buffer. A <strong>50–150 ms</strong> gap sits between thinking and forming a word — normally erased. <strong>In ADHD</strong> the seam becomes audible.</div>
+                        <div class="tags">#adhd #speech #latency #neurodivergent</div>
+                        <div class="music">
+                            <svg viewBox="0 0 24 24" fill="#fff"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3" fill="#fff"/><circle cx="18" cy="16" r="3" fill="#fff"/></svg>
+                            <div class="ticker"><span>original sound — The Velvet Razor · Forensic Voice Lab</span></div>
+                        </div>
                     </div>
                 </div>
             </section>
