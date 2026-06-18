@@ -1,0 +1,12 @@
+{
+  "name": "velvet-razor-tiktok",
+  "version": "1.0.0",
+  "private": true,
+  "description": "TikTok-style presentation of 'The Velvet Razor // Forensic Voice Lab' with a slide-to-JPEG exporter.",
+  "scripts": {
+    "export": "node render.js"
+  },
+  "devDependencies": {
+    "playwright": "^1.49.0"
+  }
+}
