@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Veeva Direct Assignment — Quick Step</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Spectral:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper:        #F6F4EE;   /* heller, neutraler Hintergrund, hoher Kontrast */
+    --card:         #FFFFFF;
+    --ink:          #1A1C1A;   /* fast-schwarz für Text */
+    --ink-soft:     #4A4F49;
+    --forest:       #1F4D3A;   /* Forest Green */
+    --forest-deep:  #143226;
+    --gold:         #B8860B;   /* Gold-Akzent */
+    --gold-soft:    #EFE3C2;
+    --line:         #D9D5C8;
+    --warn-bg:      #FBF0D8;
+    --warn-line:    #E0B84D;
+    --stop-bg:      #F7E9E6;
+    --stop-line:    #C97A6A;
+    --ok-bg:        #E7F0EA;
+    --ok-line:      #79A98C;
+    --font-display: 'Fraunces', Georgia, serif;
+    --font-body:    'Spectral', Georgia, serif;
+    --font-mono:    'IBM Plex Mono', ui-monospace, monospace;
+  }
+
+  * { box-sizing: border-box; }
+
+  html, body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--font-body);
+    font-size: 15px;
+    line-height: 1.5;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  /* ---- A4 sheet container (one per printed page) ---- */
+  .sheet {
+    width: 210mm;
+    min-height: 297mm;
+    margin: 12px auto;
+    padding: 11mm 15mm 10mm;
+    background: var(--card);
+    box-shadow: 0 6px 28px rgba(20,30,24,0.12);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* ---- shared header bits ---- */
+  .eyebrow {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin: 0 0 6px;
+  }
+  h1 {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 30px;
+    line-height: 1.05;
+    margin: 0 0 5px;
+    color: var(--forest-deep);
+  }
+  .subtitle {
+    font-size: 14px;
+    color: var(--ink-soft);
+    margin: 0 0 9px;
+    max-width: 64ch;
+  }
+  .subtitle b { color: var(--forest); }
+
+  .rule {
+    height: 3px;
+    width: 64px;
+    background: var(--gold);
+    border-radius: 2px;
+    margin: 0 0 12px;
+  }
+
+  /* ---- prerequisites ---- */
+  .prereq {
+    border: 1px solid var(--line);
+    border-left: 4px solid var(--forest);
+    background: #FCFBF7;
+    border-radius: 6px;
+    padding: 9px 14px;
+    margin: 0 0 9px;
+  }
+  .prereq h3 {
+    font-family: var(--font-mono);
+    font-size: 10.5px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--forest);
+    margin: 0 0 4px;
+  }
+  .prereq ul { margin: 0; padding-left: 18px; }
+  .prereq li { margin: 1px 0; font-size: 13px; }
+
+  /* ---- compact step list (page 1) ---- */
+  .steps { display: flex; flex-direction: column; gap: 6px; margin: 0 0 10px; }
+  .step {
+    display: grid;
+    grid-template-columns: 36px 1fr 104px;
+    gap: 14px;
+    align-items: center;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 7px 12px;
+    background: #fff;
+  }
+  .step__num {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 23px;
+    color: #fff;
+    background: var(--forest);
+    width: 36px; height: 36px;
+    display: flex; align-items: center; justify-content: center;
+    border-radius: 8px;
+  }
+  .step__body h4 {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 15px;
+    margin: 0 0 1px;
+    color: var(--forest-deep);
+  }
+  .step__body p { margin: 0; font-size: 13px; color: var(--ink-soft); }
+  .step__body code,
+  .ui {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    background: var(--gold-soft);
+    color: #6b5410;
+    padding: 1px 6px;
+    border-radius: 4px;
+    white-space: nowrap;
+  }
+
+  /* ---- screenshot frame ---- */
+  .shot { margin: 0; position: relative; }
+  .shot img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    background: #fff;
+  }
+  .shot__ph {
+    /* shown only when the real screenshot is missing/unreachable */
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    border: 1.5px dashed var(--forest);
+    border-radius: 6px;
+    background:
+      repeating-linear-gradient(45deg, #fbfaf6 0 12px, #f1efe6 12px 24px);
+    color: var(--forest);
+    font-family: var(--font-mono);
+    font-size: 12px;
+    line-height: 1.4;
+    text-align: center;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 10px;
+  }
+  .shot__ph small { color: var(--ink-soft); font-size: 10.5px; word-break: break-all; }
+  .step .shot { grid-column: 3; }
+  .step .shot__ph { aspect-ratio: 16/9; font-size: 9px; }
+
+  /* ---- callout boxes ---- */
+  .callouts { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin: 2px 0 8px; }
+  .box {
+    border-radius: 8px;
+    padding: 8px 12px;
+    border: 1px solid;
+    font-size: 12.5px;
+  }
+  .box h4 {
+    font-family: var(--font-mono);
+    font-size: 10.5px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin: 0 0 4px;
+  }
+  .box p { margin: 0; }
+  .box.ok   { background: var(--ok-bg);   border-color: var(--ok-line);   grid-column: 1 / -1; }
+  .box.ok   h4 { color: var(--forest); }
+  .box.warn { background: var(--warn-bg); border-color: var(--warn-line); }
+  .box.warn h4 { color: #8a6400; }
+  .box.stop { background: var(--stop-bg); border-color: var(--stop-line); }
+  .box.stop h4 { color: #9c3d2c; }
+
+  /* ---- reference bar ---- */
+  .refs {
+    margin-top: auto;
+    border-top: 1px solid var(--line);
+    padding-top: 9px;
+  }
+  .refs h4 {
+    font-family: var(--font-mono);
+    font-size: 10.5px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin: 0 0 6px;
+  }
+  .refs ol { margin: 0; padding-left: 18px; }
+  .refs li { margin: 2px 0; font-size: 12px; }
+  .refs a { color: var(--forest); text-decoration: none; border-bottom: 1px solid var(--gold); }
+  .refs .note { margin: 7px 0 0; font-size: 11px; color: var(--ink-soft); font-style: italic; }
+
+  /* ---- detail pages (one step per page) ---- */
+  .detail__head { display: flex; align-items: baseline; gap: 14px; margin: 0 0 4px; }
+  .detail__num {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 42px;
+    color: var(--gold);
+    line-height: 1;
+  }
+  .detail__head h2 {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 26px;
+    color: var(--forest-deep);
+    margin: 0;
+  }
+  .detail__lead { font-size: 16px; color: var(--ink-soft); margin: 0 0 16px; max-width: 70ch; }
+  .detail .shot { display: flex; flex-direction: column; }
+  .detail .shot img { max-height: 165mm; object-fit: contain; align-self: flex-start; }
+  .detail .shot__ph { min-height: 165mm; }
+  .detail__src {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--ink-soft);
+    margin: 12px 0 0;
+  }
+  .detail__src a { color: var(--forest); }
+
+  .footer {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    color: var(--ink-soft);
+    letter-spacing: 0.08em;
+    position: absolute;
+    bottom: 8mm; left: 16mm; right: 16mm;
+    display: flex; justify-content: space-between;
+    border-top: 1px solid var(--line);
+    padding-top: 6px;
+  }
+
+  /* ---- print ---- */
+  @page { size: A4; margin: 0; }
+  @media print {
+    body { background: #fff; }
+    .sheet { box-shadow: none; margin: 0; break-after: page; }
+    .sheet:last-child { break-after: auto; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ============================================================= -->
+<!-- PAGE 1 — KOMPAKTE QUICK-STEP-KARTE                              -->
+<!-- ============================================================= -->
+<section class="sheet">
+  <p class="eyebrow">Veeva Vault · Study Training (Clinical)</p>
+  <h1>Direct Assignment — Quick Step</h1>
+  <div class="rule"></div>
+  <p class="subtitle">
+    <b>Fall B:</b> Einem oder mehreren Learnern ein Training <b>einmalig,
+    ad-hoc und außerhalb der Trainings-Matrix</b> zuweisen — ohne die Learner
+    Roles / Study-Person-Logik zu verändern.
+  </p>
+
+  <div class="prereq">
+    <h3>Voraussetzungen</h3>
+    <ul>
+      <li>Rolle mit <span class="ui">Execute</span>-Recht auf der User Action
+        <span class="ui">Direct Assignment</span> (z. B. Training Admin).</li>
+      <li><b>Einstieg:</b> Admin → Business Admin →
+        <span class="ui">Training Requirements</span> (Datensatz im Zustand
+        <span class="ui">Available</span>).</li>
+      <li>Die Person(en) existieren als <span class="ui">Person</span>-Record mit
+        aktivem Learner-Bezug.</li>
+    </ul>
+  </div>
+
+  <div class="steps">
+    <div class="step">
+      <div class="step__num">1</div>
+      <div class="step__body">
+        <h4>Objekt öffnen (über Admin)</h4>
+        <p><span class="ui">Admin</span> → <span class="ui">Business Admin</span> →
+          <span class="ui">Training Requirements</span> → Datensatz
+          (<span class="ui">Available</span>) öffnen.</p>
+      </div>
+      <figure class="shot">
+        <img src="images/veeva/step-1.png" alt="Schritt 1"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+        <div class="shot__ph">Schritt 1<small>images/veeva/step-1.png</small></div>
+      </figure>
+    </div>
+
+    <div class="step">
+      <div class="step__num">2</div>
+      <div class="step__body">
+        <h4>Aktion wählen</h4>
+        <p>Im <span class="ui">Actions</span>-Menü
+          <span class="ui">Direct Assignment</span> auswählen.</p>
+      </div>
+      <figure class="shot">
+        <img src="images/veeva/step-2.png" alt="Schritt 2"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+        <div class="shot__ph">Schritt 2<small>images/veeva/step-2.png</small></div>
+      </figure>
+    </div>
+
+    <div class="step">
+      <div class="step__num">3</div>
+      <div class="step__body">
+        <h4>Learner wählen</h4>
+        <p>Im Feld <span class="ui">Learners</span> die Person(en) eintragen —
+          Mehrfachauswahl möglich.</p>
+      </div>
+      <figure class="shot">
+        <img src="images/veeva/step-3.png" alt="Schritt 3"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+        <div class="shot__ph">Schritt 3<small>images/veeva/step-3.png</small></div>
+      </figure>
+    </div>
+
+    <div class="step">
+      <div class="step__num">4</div>
+      <div class="step__body">
+        <h4>Geltungsbereich</h4>
+        <p><span class="ui">Apply to Training Requirements in</span> setzen:
+          <span class="ui">Available States Only</span> oder
+          <span class="ui">All States Except Retired</span>.</p>
+      </div>
+      <figure class="shot">
+        <img src="images/veeva/step-4.png" alt="Schritt 4"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+        <div class="shot__ph">Schritt 4<small>images/veeva/step-4.png</small></div>
+      </figure>
+    </div>
+
+    <div class="step">
+      <div class="step__num">5</div>
+      <div class="step__body">
+        <h4>Bestätigen</h4>
+        <p><span class="ui">Continue</span> klicken — Vault legt den
+          <span class="ui">Direct Assignment Request</span> an und issued das
+          Training Assignment.</p>
+      </div>
+      <figure class="shot">
+        <img src="images/veeva/step-5.png" alt="Schritt 5"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+        <div class="shot__ph">Schritt 5<small>images/veeva/step-5.png</small></div>
+      </figure>
+    </div>
+  </div>
+
+  <div class="callouts">
+    <div class="box ok">
+      <h4>Ergebnis</h4>
+      <p>Ein <span class="ui">Training Assignment</span> wird erstellt &amp; ausgegeben,
+        mit <span class="ui">Created Via Direct Assignment = Yes</span> und Referenz
+        auf den <span class="ui">Direct Assignment Request</span>. Die normale
+        Matrix/Learner-Role-Zuweisung bleibt unberührt.</p>
+    </div>
+    <div class="box warn">
+      <h4>Achtung</h4>
+      <p>Einmalige Ad-hoc-Zuweisung — klinkt die Person <b>nicht dauerhaft</b> in
+        die Matrix ein (das wäre Fall C „Assign to Learner"). Ohne
+        <span class="ui">Execute</span>-Recht erscheint die Aktion nicht.</p>
+    </div>
+    <div class="box stop">
+      <h4>Stornieren</h4>
+      <p>Über den erzeugten <span class="ui">Direct Assignment Request</span> bzw.
+        das <span class="ui">Training Assignment</span> (Cancel / passender
+        Lifecycle-State) zurücknehmen.</p>
+    </div>
+  </div>
+
+  <div class="refs">
+    <h4>Referenz — offizielle Veeva-Hilfe (releasegenaue Screenshots)</h4>
+    <ol>
+      <li><a href="https://training.veevavault.help/en/lr/48712013/">Direct Assignments — Veeva Training</a></li>
+      <li><a href="https://quality.veevavault.help/en/lr/48712025/">Setting Up Veeva Study Training</a></li>
+      <li><a href="https://quality.veevavault.help/en/lr/54488/">Completing Training Assignments</a></li>
+    </ol>
+    <p class="note">Nur für den Eigengebrauch. Schritte können je nach Vault-Release/Konfiguration leicht abweichen.</p>
+  </div>
+
+  <div class="footer"><span>Veeva · Direct Assignment · Quick Step</span><span>Fall B — ad-hoc</span></div>
+</section>
+
+<!-- ============================================================= -->
+<!-- PAGES 2–6 — EINE SEITE PRO SCHRITT                             -->
+<!-- ============================================================= -->
+
+<section class="sheet detail">
+  <p class="eyebrow">Direct Assignment · Schritt 1 von 5</p>
+  <div class="detail__head"><span class="detail__num">1</span><h2>Objekt öffnen (über Admin)</h2></div>
+  <p class="detail__lead">Es gibt keinen eigenen Training-Tab: App-Picker (Raster oben
+    links) → <span class="ui">Admin</span> → <span class="ui">Business Admin</span> →
+    Objekt <span class="ui">Training Requirements</span> (oder
+    <span class="ui">Curricula</span>). Öffne den gewünschten Datensatz — er muss im
+    Zustand <span class="ui">Available</span> sein.</p>
+  <figure class="shot">
+    <img src="images/veeva/step-1.png" alt="Schritt 1 — Objekt öffnen"
+         onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+    <div class="shot__ph">Screenshot · Schritt 1<small>images/veeva/step-1.png — eigene Aufnahme oder offizielle Veeva-Hilfe hier ablegen</small></div>
+  </figure>
+  <p class="detail__src">Quelle: <a href="https://training.veevavault.help/en/lr/48712013/">training.veevavault.help/en/lr/48712013</a></p>
+  <div class="footer"><span>Veeva · Direct Assignment · Quick Step</span><span>Schritt 1/5</span></div>
+</section>
+
+<section class="sheet detail">
+  <p class="eyebrow">Direct Assignment · Schritt 2 von 5</p>
+  <div class="detail__head"><span class="detail__num">2</span><h2>Aktion wählen</h2></div>
+  <p class="detail__lead">Öffne das <span class="ui">Actions</span>-Menü des Records und
+    wähle <span class="ui">Direct Assignment</span>.</p>
+  <figure class="shot">
+    <img src="images/veeva/step-2.png" alt="Schritt 2 — Direct Assignment im Actions-Menü"
+         onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+    <div class="shot__ph">Screenshot · Schritt 2<small>images/veeva/step-2.png — eigene Aufnahme oder offizielle Veeva-Hilfe hier ablegen</small></div>
+  </figure>
+  <p class="detail__src">Quelle: <a href="https://training.veevavault.help/en/lr/48712013/">training.veevavault.help/en/lr/48712013</a></p>
+  <div class="footer"><span>Veeva · Direct Assignment · Quick Step</span><span>Schritt 2/5</span></div>
+</section>
+
+<section class="sheet detail">
+  <p class="eyebrow">Direct Assignment · Schritt 3 von 5</p>
+  <div class="detail__head"><span class="detail__num">3</span><h2>Learner wählen</h2></div>
+  <p class="detail__lead">Trage im Feld <span class="ui">Learners</span> die zuzuweisende(n)
+    Person(en) ein. Mehrere Personen sind in einem Schritt möglich.</p>
+  <figure class="shot">
+    <img src="images/veeva/step-3.png" alt="Schritt 3 — Learners auswählen"
+         onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+    <div class="shot__ph">Screenshot · Schritt 3<small>images/veeva/step-3.png — eigene Aufnahme oder offizielle Veeva-Hilfe hier ablegen</small></div>
+  </figure>
+  <p class="detail__src">Quelle: <a href="https://training.veevavault.help/en/lr/48712013/">training.veevavault.help/en/lr/48712013</a></p>
+  <div class="footer"><span>Veeva · Direct Assignment · Quick Step</span><span>Schritt 3/5</span></div>
+</section>
+
+<section class="sheet detail">
+  <p class="eyebrow">Direct Assignment · Schritt 4 von 5</p>
+  <div class="detail__head"><span class="detail__num">4</span><h2>Geltungsbereich setzen</h2></div>
+  <p class="detail__lead">Wähle bei <span class="ui">Apply to Training Requirements in</span>,
+    ob nur <span class="ui">Available States Only</span> oder
+    <span class="ui">All States Except Retired</span> berücksichtigt werden.</p>
+  <figure class="shot">
+    <img src="images/veeva/step-4.png" alt="Schritt 4 — Apply to Training Requirements in"
+         onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+    <div class="shot__ph">Screenshot · Schritt 4<small>images/veeva/step-4.png — eigene Aufnahme oder offizielle Veeva-Hilfe hier ablegen</small></div>
+  </figure>
+  <p class="detail__src">Quelle: <a href="https://training.veevavault.help/en/lr/48712013/">training.veevavault.help/en/lr/48712013</a></p>
+  <div class="footer"><span>Veeva · Direct Assignment · Quick Step</span><span>Schritt 4/5</span></div>
+</section>
+
+<section class="sheet detail">
+  <p class="eyebrow">Direct Assignment · Schritt 5 von 5</p>
+  <div class="detail__head"><span class="detail__num">5</span><h2>Bestätigen</h2></div>
+  <p class="detail__lead">Klicke <span class="ui">Continue</span>. Vault erzeugt einen
+    <span class="ui">Direct Assignment Request</span>, verschiebt ihn in den Zustand
+    <span class="ui">Issued</span> und gibt das Training Assignment aus
+    (<span class="ui">Created Via Direct Assignment = Yes</span>).</p>
+  <figure class="shot">
+    <img src="images/veeva/step-5.png" alt="Schritt 5 — Continue / Bestätigung"
+         onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+    <div class="shot__ph">Screenshot · Schritt 5<small>images/veeva/step-5.png — eigene Aufnahme oder offizielle Veeva-Hilfe hier ablegen</small></div>
+  </figure>
+  <p class="detail__src">Quelle: <a href="https://training.veevavault.help/en/lr/48712013/">training.veevavault.help/en/lr/48712013</a></p>
+  <div class="footer"><span>Veeva · Direct Assignment · Quick Step</span><span>Schritt 5/5</span></div>
+</section>
+
+</body>
+</html>
