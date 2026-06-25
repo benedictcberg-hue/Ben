@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weißtöne — Pantone® Übersicht</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --page-bg: #e8e8e6;
+            --card-bg: #ffffff;
+            --ink: #111111;
+            --muted: #8a8a86;
+            --font-sans: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            --font-mono: 'IBM Plex Mono', ui-monospace, 'Courier New', monospace;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            background: var(--page-bg);
+            color: var(--ink);
+            font-family: var(--font-sans);
+            -webkit-font-smoothing: antialiased;
+            line-height: 1.4;
+            padding: clamp(20px, 5vw, 64px);
+        }
+
+        /* --- HEADER --- */
+        .header {
+            max-width: 1200px;
+            margin: 0 auto 40px;
+        }
+        .header__title {
+            font-size: clamp(34px, 7vw, 64px);
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            line-height: 1;
+        }
+        .header__sub {
+            margin-top: 8px;
+            font-size: clamp(14px, 2.4vw, 18px);
+            font-weight: 700;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--ink);
+        }
+        .header__intro {
+            margin-top: 14px;
+            max-width: 60ch;
+            font-size: clamp(14px, 2vw, 16px);
+            color: #4a4a47;
+        }
+
+        /* --- GRID --- */
+        .grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: clamp(14px, 2.5vw, 26px);
+        }
+
+        /* --- PANTONE CHIP --- */
+        .chip {
+            background: var(--card-bg);
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.08), 0 12px 28px rgba(0,0,0,0.06);
+        }
+        .chip__swatch {
+            aspect-ratio: 1 / 1.05;
+            /* subtle inset border so near-white swatches stay distinguishable */
+            box-shadow: inset 0 0 0 1px rgba(0,0,0,0.06);
+        }
+        .chip__label {
+            padding: 12px 12px 16px;
+        }
+        .chip__brand {
+            font-size: 11px;
+            font-weight: 800;
+            letter-spacing: 0.04em;
+            line-height: 1;
+        }
+        .chip__code {
+            margin-top: 8px;
+            font-family: var(--font-mono);
+            font-size: 12px;
+            font-weight: 600;
+            color: #2a2a28;
+        }
+        .chip__name {
+            margin-top: 3px;
+            font-size: 14px;
+            font-weight: 700;
+            letter-spacing: -0.01em;
+        }
+        .chip__hex {
+            margin-top: 2px;
+            font-family: var(--font-mono);
+            font-size: 11px;
+            color: var(--muted);
+            text-transform: uppercase;
+        }
+
+        /* --- FOOTER --- */
+        .footer {
+            max-width: 1200px;
+            margin: 44px auto 0;
+            font-size: 12px;
+            color: var(--muted);
+        }
+        .footer span { font-weight: 700; }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <h1 class="header__title">Weißtöne</h1>
+        <div class="header__sub">Pantone® Übersicht</div>
+        <p class="header__intro">
+            Eine kuratierte Auswahl an Weißtönen im klassischen Pantone-Chip-Stil —
+            von kühlem Reinweiß bis zu warmen, cremigen Off-Whites. Jeder Chip zeigt
+            Code, Name und Hex-Wert.
+        </p>
+    </header>
+
+    <main class="grid" id="grid"></main>
+
+    <footer class="footer">
+        <span>Hinweis:</span> Pantone-Codes und Hex-Werte sind kuratierte
+        Annäherungen zur Bildschirmdarstellung und nicht farbverbindlich.
+        PANTONE® ist eine Marke von Pantone LLC.
+    </footer>
+
+    <script>
+        // Weißtöne — Name · Pantone-Code · Hex (kuratierte Annäherung)
+        const whites = [
+            { name: 'Bright White',    code: '11-0601 TCX', hex: '#F4F5F0' },
+            { name: 'Brilliant White', code: '11-4001 TCX', hex: '#EDF1FE' },
+            { name: 'Snow White',      code: '11-0602 TCX', hex: '#F2F0EB' },
+            { name: 'Cloud Dancer',    code: '11-4201 TCX', hex: '#F0EEE9' },
+            { name: 'Marshmallow',     code: '11-4300 TCX', hex: '#F0EEE4' },
+            { name: 'Blanc de Blanc',  code: '11-4800 TCX', hex: '#E7E9E7' },
+            { name: 'Gardenia',        code: '11-0604 TCX', hex: '#F1E9DF' },
+            { name: 'Whisper White',   code: '11-0701 TCX', hex: '#EDE6DB' },
+            { name: 'Egret',           code: '11-0103 TCX', hex: '#E7DFD0' },
+            { name: 'Antique White',   code: '11-0105 TCX', hex: '#E8E3D9' },
+            { name: 'Vanilla Ice',     code: '11-0104 TCX', hex: '#F0EADC' },
+            { name: 'Coconut Milk',    code: '11-0608 TCX', hex: '#F0EAE0' },
+        ];
+
+        const grid = document.getElementById('grid');
+        for (const w of whites) {
+            const chip = document.createElement('article');
+            chip.className = 'chip';
+            chip.innerHTML = `
+                <div class="chip__swatch" style="background:${w.hex}"></div>
+                <div class="chip__label">
+                    <div class="chip__brand">PANTONE&reg;</div>
+                    <div class="chip__code">${w.code}</div>
+                    <div class="chip__name">${w.name}</div>
+                    <div class="chip__hex">${w.hex}</div>
+                </div>`;
+            grid.appendChild(chip);
+        }
+    </script>
+</body>
+</html>
