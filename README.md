@@ -43,3 +43,4 @@ export/slide-01.jpg   …   export/slide-07.jpg
 | `render.js`   | Playwright script — renders each slide to a JPEG.    |
 | `package.json`| `npm run export` script + Playwright dependency.     |
 | `export/`     | Generated 1080×1920 JPEGs.                            |
+| `pantone-white.html` | Standalone Pantone®-style overview of white tones (open in any browser). |
