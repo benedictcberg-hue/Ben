@@ -38,8 +38,22 @@ Playwright-based exporter that renders each slide to a 1080×1920 JPEG.
 ### Commands
 
 - `npm install` — install dev dependencies (Playwright).
-- `npx playwright install chromium` — one-time browser download.
+- `npx playwright install chromium` — one-time browser download. In managed
+  environments where this is blocked, `render-pdf.js` auto-detects a pre-installed
+  Chromium under `$PLAYWRIGHT_BROWSERS_PATH` (or set `CHROME_PATH`).
 - `npm run export` — render all slides to `export/*.jpg`.
+- `npm run export:pdf` — render `Veeva_Direct_Assignment_QuickStep.html` to
+  `export/Veeva_Direct_Assignment_QuickStep.pdf` (multi-page A4).
+
+### Veeva Direct Assignment help (separate from the TikTok deck)
+
+- `Veeva_Direct_Assignment_QuickStep.html` — Quick-Step guide (Forest Green/Gold;
+  Fraunces/Spectral/IBM Plex Mono). Page 1 is a compact one-page card; pages 2–6
+  are one step each with a large screenshot slot.
+- `images/veeva/step-1.png … step-5.png` — screenshots embedded by the guide.
+  Missing files fall back to labeled placeholders, so the PDF is always complete.
+  See `images/veeva/README.md`. Official Veeva help is blocked by the default web
+  network policy, so screenshots are added manually (or with a broader policy).
 
 ### Notes for AI Assistants
 
