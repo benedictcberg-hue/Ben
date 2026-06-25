@@ -1,3 +1,7 @@
 node_modules/
 package-lock.json
 .DS_Store
+
+# Generated forecast data (regeneratable via `npm run forecast`)
+data/*.duckdb
+data/forecast_daily.csv

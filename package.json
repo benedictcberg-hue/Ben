@@ -4,7 +4,8 @@
   "private": true,
   "description": "TikTok-style presentation of 'The Velvet Razor // Forensic Voice Lab' with a slide-to-JPEG exporter.",
   "scripts": {
-    "export": "node render.js"
+    "export": "node render.js",
+    "forecast": "node forecast/simulate.js && python3 forecast/load_duckdb.py"
   },
   "devDependencies": {
     "playwright": "^1.49.0"
