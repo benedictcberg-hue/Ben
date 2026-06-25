@@ -1,0 +1,4 @@
+month,tmax_mean,tmax_p10,tmax_p90,hot_days_avg,hot_days_p90,desert_days_avg,tropical_nights_avg,peak_median,peak_p95,peak_p99
+7,27.6,24.8,30.3,9.2,17.0,1.7,14.3,35.4,41.2,44.2
+8,25.7,23.0,28.5,5.4,12.0,0.7,9.4,33.5,39.2,42.2
+9,22.1,19.5,24.8,1.2,4.0,0.1,2.4,29.6,35.4,38.2
