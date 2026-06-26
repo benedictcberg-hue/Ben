@@ -199,6 +199,22 @@ body {
   font-style: italic;
 }
 
+/* ── Timing badge ── */
+.timing-badge {
+  display: inline-block;
+  padding: 1px 6px;
+  border-radius: 3px;
+  font-size: 7.5pt;
+  font-weight: 700;
+  text-align: center;
+  flex-shrink: 0;
+  margin-left: 6px;
+  vertical-align: middle;
+}
+
+.timing-badge--pre    { background: #dbeafe; color: #1e40af; border: 1px solid #93c5fd; }
+.timing-badge--onsite { background: #fef3c7; color: #92400e; border: 1px solid #fcd34d; }
+
 /* ── Answer badge ── */
 .answer-badge {
   display: inline-block;

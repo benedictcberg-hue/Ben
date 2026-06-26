@@ -6,6 +6,16 @@ function AnswerBadge({ answer }) {
   return <span className={`answer-badge ${cls}`}>{answer || 'NA'}</span>
 }
 
+function TimingBadge({ timing }) {
+  if (!timing) return null
+  const isVorab = timing === 'pre'
+  return (
+    <span className={`timing-badge timing-badge--${isVorab ? 'pre' : 'onsite'}`}>
+      {isVorab ? 'Vorab' : 'Vor Ort'}
+    </span>
+  )
+}
+
 export default function QuestionSection({ section }) {
   return (
     <div className="section-block">
@@ -20,7 +30,10 @@ export default function QuestionSection({ section }) {
         <div className="question-row" key={q.id}>
           <div className="question-id">{q.id}</div>
           <div className="question-body">
-            <div className="question-text">{q.text}</div>
+            <div className="question-text">
+              {q.text}
+              <TimingBadge timing={q.timing} />
+            </div>
             {q.comment
               ? <div className="question-comment">{q.comment}</div>
               : <div className="question-comment question-comment--empty">No comment entered.</div>

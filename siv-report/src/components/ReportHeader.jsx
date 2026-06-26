@@ -19,6 +19,9 @@ export default function ReportHeader() {
               <span className={`admin-row__value${f.value ? '' : ' admin-row__value--empty'}`}>
                 {f.value || '—'}
               </span>
+              <span className={`timing-badge timing-badge--${f.timing === 'pre' ? 'pre' : 'onsite'}`}>
+                {f.timing === 'pre' ? 'Vorab' : 'Vor Ort'}
+              </span>
             </div>
           ))}
         </div>
